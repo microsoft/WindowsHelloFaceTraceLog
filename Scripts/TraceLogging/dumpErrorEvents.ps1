@@ -1,0 +1,1 @@
+Get-WinEvent -FilterHashtable @{Logname="Application"; Level=2} | Format-List -Property *
