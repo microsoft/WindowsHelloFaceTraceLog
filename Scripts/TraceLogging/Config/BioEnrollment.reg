@@ -1,0 +1,22 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\BioEnrollment]
+"Status"=dword:00000000
+"Guid"="{a55d5a23-1a5b-580a-2be5-d7188f43fae0}"
+"Start"=dword:00000001
+"FlushTimer"=dword:0000000a
+"MaxFile"=dword:00000003
+"BufferSize"=dword:00000040
+"MaximumBuffers"=dword:00000010
+"MinimumBuffers"=dword:00000002
+"FileName"="%SystemRoot%\\system32\\LogFiles\\Wmi\\BioEnrollment.etl"
+"ClockType"=dword:00000001
+"MaxFileSize"=dword:0000000a
+"LogFileMode"=dword:00001202
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\BioEnrollment\{a55d5a23-1a5b-580a-2be5-d7188f43fae1}]
+"Enabled"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\BioEnrollment\{4b8b1947-ae4d-54e2-826a-1aee78ef05b2}]
+"Enabled"=dword:00000001
+"Status"=dword:00000000
