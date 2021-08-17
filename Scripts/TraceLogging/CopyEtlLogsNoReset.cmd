@@ -34,7 +34,7 @@ logman stop MFTracing -ets >nul 2>&1
 REM sleep for 10 seconds
 ping 127.0.0.1 -n 10 -w 1000 > nul 2>&1
 
-set LOG_FOLDER=\\nuiface\Hello\ETLLogs\%computername%-%username%
+set LOG_FOLDER=%userprofile%\desktop\%computername%-%username%
 if not exist %LOG_FOLDER% mkdir %LOG_FOLDER%
 
 set DATE_FOLDER=%date:~-4%%date:~4,2%%date:~7,2%%time:~0,2%%time:~3,2%%time:~6,2%
@@ -55,8 +55,9 @@ copy "%WINDIR%\system32\LogFiles\WMI\NGC.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\TPM.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\WinBioService.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\WinLogon.*" "%OUTPUT_FOLDER%"\
-copy "%WINDIR%\Analog\Providers\ProviderLogOutput.txt" "%OUTPUT_FOLDER%"\ >nul 2>&1
 copy "%WINDIR%\system32\LogFiles\WMI\MFTracing.*" "%OUTPUT_FOLDER%"\
+copy "%WINDIR%\Analog\Providers\ProviderLogOutput.txt" "%OUTPUT_FOLDER%"\ >nul 2>&1
+copy "%HOMEDRIVE%\credprovs.*" "%OUTPUT_FOLDER%"\
 
 del %WINDIR%\System32\LogFiles\WMI\FaceUnlock.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\FaceReco.etl* >nul 2>&1
@@ -69,6 +70,7 @@ del %WINDIR%\System32\LogFiles\WMI\TPM.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\WinBioService.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\WinLogon.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\MFTracing.etl* >nul 2>&1
+del %HOMEDRIVE%\credprovs.reg* >nul 2>&1
 
 echo.
 ECHO Copying winbio.evtx
@@ -107,6 +109,10 @@ move /y %TEMP%\dxdiag.txt "%OUTPUT_FOLDER%"\
 echo.
 echo Resetting the logging ...
 rem call %_dir%\EnableTraceLogs.cmd >nul 2>&1
+
+echo.
+echo Disable AutoLoggers
+reg import .\Config\DisableAllLoggers.reg
 
 echo.
 echo Find your uploaded logs at %OUTPUT_FOLDER%

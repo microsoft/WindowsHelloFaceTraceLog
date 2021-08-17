@@ -10,6 +10,7 @@ echo Start dxdiag logs ...
 set DXDIAG_LOG="%TEMP%\dxdiag.txt"
 start dxdiag /whql:off /t %TEMP%\dxdiag.txt>nul 2>&1
 
+set OUTPUTLOCATION=%userprofile%\desktop
 if not "%1"=="" set OUTPUTLOCATION=%1
 
 set LOG_FOLDER=%OUTPUTLOCATION%\%computername%-%username%
@@ -41,6 +42,7 @@ logman stop sds_log -ets >nul 2>&1
 logman stop NGCTPMFingerprintCP -ets >nul 2>&1
 logman stop LogonUICredFrame -ets >nul 2>&1
 logman stop WinBioService -ets >nul 2>&1
+logman stop MFTracing -ets >nul 2>&1
 
 REM sleep for 2 seconds
 ping 127.0.0.1 -n 10 -w 200 > nul 2>&1
@@ -64,7 +66,9 @@ copy "%WINDIR%\system32\LogFiles\WMI\sds_log.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\NGCTPMFingerprintCP.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\LogonUICredFrame.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\WinBioService.*" "%OUTPUT_FOLDER%"\
+copy "%WINDIR%\system32\LogFiles\WMI\MFTracing.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\Analog\Providers\ProviderLogOutput.txt" "%OUTPUT_FOLDER%"\ >nul 2>&1
+copy "%HOMEDRIVE%\credprovs.*" "%OUTPUT_FOLDER%"\
 
 del %WINDIR%\System32\LogFiles\WMI\FaceTracker.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\FaceCredProv.etl* >nul 2>&1
@@ -77,6 +81,8 @@ del %WINDIR%\System32\LogFiles\WMI\sds_log.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\NGCTPMFingerprintCP.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\LogonUICredFrame.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\WinBioService.etl* >nul 2>&1
+del %WINDIR%\System32\LogFiles\WMI\MFTracing.etl* >nul 2>&1
+del %HOMEDRIVE%\credprovs.reg* >nul 2>&1
 
 echo.
 ECHO Copying winbio.evtx
@@ -101,12 +107,16 @@ echo Copying driver installation logs ...
 copy /y "%WINDIR%\INF\setupapi.dev.log" "%OUTPUT_FOLDER%"\
 
 echo.
-echo Eport PNP state.. may take a while...
+echo Export PNP state.. may take a while...
 pnputil.exe /export-pnpstate %OUTPUT_FOLDER%\pnpstate.pnp
 
 echo.
 echo Resetting the logging ...
 CALL cmd /c EnableTraceLogs.cmd >nul 2>&1
+
+echo.
+echo Disable AutoLoggers
+reg import .\Config\DisableAllLoggers.reg
 
 echo.
 echo Find your uploaded logs at %OUTPUT_FOLDER%

@@ -11,6 +11,9 @@ set _dir=%~dp0
 @echo ===============================================
 @echo Windows version and build
 reg.exe query "HKLM\Software\Microsoft\Windows NT\CurrentVersion" /v BuildLabEx
+reg.exe query "HKLM\Software\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild
+reg.exe query "HKLM\Software\Microsoft\Windows NT\CurrentVersion" /v CurrentMajorVersionNumber
+reg.exe query "HKLM\Software\Microsoft\Windows NT\CurrentVersion" /v CurrentMinorVersionNumber
 
 @echo ===============================================
 @echo Query analog provider regkeys recursively
