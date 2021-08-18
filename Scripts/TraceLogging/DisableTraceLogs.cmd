@@ -6,44 +6,7 @@ PUSHD "%~dp0"
 CALL CheckAdmin.cmd || GOTO :EOF
 
 echo.
-echo Enabling Face unlock, CredFrame, fingerprint, authux, enrollment, NGC, TPM, wbiosrvc, MFTrace logging
-echo.
-echo Setting permissions
-
-SET SETACLEXE="SetACL.exe"
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FaceReco" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FaceTel" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FaceTracker" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FaceUnlock" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FacePerf" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\BioEnrollment" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\sds_log" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\NGCTPMFingerprintCP" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\LogonUICredFrame" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\WinBioService" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\MFTracing" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
-
-echo.
-echo Importing logging registry entries
-echo.
-reg import .\Config\FaceUnlock.reg
-reg import .\Config\FaceReco.reg
-reg import .\Config\FaceTel.reg
-reg import .\Config\FaceTracker.reg
-reg import .\Config\FacePerf.reg
-reg import .\Config\BioEnrollment.reg
-reg import .\Config\sds_log.reg
-reg import .\Config\NGCTPMFingerprintCP.reg
-reg import .\Config\LogonUICredFrame.reg
-reg import .\Config\WinBioService.reg
-reg import .\Config\MFTracing.reg
-
-echo.
 echo Stopping loggers
-
-net stop wbiosrvc >nul 2>&1
-net stop sensordataservice >nul 2>&1
-net stop frameserver >nul 2>&1
 
 logman stop FaceUnlock -ets >nul 2>&1
 logman stop FaceCredProv -ets >nul 2>&1
@@ -70,6 +33,6 @@ del %WINDIR%\System32\LogFiles\WMI\LogonUICredFrame.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\WinBioService.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\MFTracing.etl* >nul 2>&1
 
-reg import DisableAllLoggers.reg
+reg import .\Config\DisableAllLoggers.reg
 
 echo.

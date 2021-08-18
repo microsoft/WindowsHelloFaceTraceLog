@@ -41,6 +41,9 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FaceTel\{22eb0808-0b6c-5cd4-5511-6a77e6e73a93}
 "Enabled"=dword:00000000
 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FaceTel\{d01ee910-26c6-5d68-aac1-49ccbfeade29}]
+"Enabled"=dword:00000000
+
 ;FaceUnlock
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FaceCredProv]
 "Start"=dword:00000000
