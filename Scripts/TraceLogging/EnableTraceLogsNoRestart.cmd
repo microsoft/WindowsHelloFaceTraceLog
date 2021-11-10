@@ -60,6 +60,6 @@ logman import sds_log -xml .\Config\sds_log.xml -ets
 logman import NGCTPMFingerprintCP -xml .\Config\NGCTPMFingerprintCP.xml -ets
 logman import LogonUICredFrame -xml .\Config\LogonUICredFrame.xml -ets
 logman import WinBioService -xml .\Config\WinBioService.xml -ets
-logman import MFTracing -xml MFTracing.xml -ets
+logman import MFTracing -xml .\Config\MFTracing.xml -ets
 
 echo.
