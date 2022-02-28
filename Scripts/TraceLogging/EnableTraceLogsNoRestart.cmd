@@ -12,9 +12,9 @@ REM net stop sensordataservice >nul 2>&1
 REM net stop frameserver >nul 2>&1
 
 echo.
-echo Enabling Face unlock, CredFrame, fingerprint, tracker, enrollment, wbiosrvc
+echo Enabling Face Unlock, CredFrame, Fingerprint, Tracker, Enrollment, wbiosrvc
 echo.
-echo Setting permissions
+echo Setting Permissions
 
 SET SETACLEXE="SetACL.exe"
 %SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\FaceTracker" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
@@ -30,7 +30,7 @@ SET SETACLEXE="SetACL.exe"
 %SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\MFTracing" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
 
 echo.
-echo Importing logging registry entries
+echo Importing Logging Registry Entries
 echo.
 reg import .\Config\FaceTracker.reg
 reg import .\Config\FaceUnlock.reg
@@ -45,7 +45,7 @@ reg import .\Config\WinBioService.reg
 reg import .\Config\MFTracing.reg
 
 echo.
-echo Starting loggers
+echo Starting Loggers
 echo.
 
 cd
