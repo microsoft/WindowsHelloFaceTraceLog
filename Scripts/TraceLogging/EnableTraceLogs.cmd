@@ -28,6 +28,7 @@ SET SETACLEXE="SetACL.exe"
 %SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\LogonUICredFrame" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
 %SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\WinBioService" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
 %SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\MFTracing" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
+%SETACLEXE% -on "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\KernelPnP" -ot reg -actn setowner -ownr "n:builtin\Administrators" >nul 2>&1
 
 echo.
 echo Importing logging registry entries
@@ -43,6 +44,7 @@ reg import .\Config\NGCTPMFingerprintCP.reg
 reg import .\Config\LogonUICredFrame.reg
 reg import .\Config\WinBioService.reg
 reg import .\Config\MFTracing.reg
+reg import .\Config\KernelPnP.reg
 
 echo.
 echo Starting loggers
@@ -61,5 +63,6 @@ logman import NGCTPMFingerprintCP -xml .\Config\NGCTPMFingerprintCP.xml -ets
 logman import LogonUICredFrame -xml .\Config\LogonUICredFrame.xml -ets
 logman import WinBioService -xml .\Config\WinBioService.xml -ets
 logman import MFTracing -xml .\Config\MFTracing.xml -ets
+logman import KernelPnP -xml .\Config\KernelPnP.xml -ets
 
 echo.

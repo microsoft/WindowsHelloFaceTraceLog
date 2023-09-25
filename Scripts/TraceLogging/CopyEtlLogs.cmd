@@ -43,6 +43,7 @@ logman stop NGCTPMFingerprintCP -ets >nul 2>&1
 logman stop LogonUICredFrame -ets >nul 2>&1
 logman stop WinBioService -ets >nul 2>&1
 logman stop MFTracing -ets >nul 2>&1
+logman stop KernelPnP -ets >nul 2>&1
 
 REM sleep for 2 seconds
 ping 127.0.0.1 -n 10 -w 200 > nul 2>&1
@@ -67,6 +68,7 @@ copy "%WINDIR%\system32\LogFiles\WMI\NGCTPMFingerprintCP.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\LogonUICredFrame.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\WinBioService.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\system32\LogFiles\WMI\MFTracing.*" "%OUTPUT_FOLDER%"\
+copy "%WINDIR%\system32\LogFiles\WMI\KernelPnP.*" "%OUTPUT_FOLDER%"\
 copy "%WINDIR%\Analog\Providers\ProviderLogOutput.txt" "%OUTPUT_FOLDER%"\ >nul 2>&1
 copy "%HOMEDRIVE%\credprovs.*" "%OUTPUT_FOLDER%"\
 
@@ -82,6 +84,7 @@ del %WINDIR%\System32\LogFiles\WMI\NGCTPMFingerprintCP.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\LogonUICredFrame.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\WinBioService.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\MFTracing.etl* >nul 2>&1
+del %WINDIR%\System32\LogFiles\WMI\KernelPnP.etl* >nul 2>&1
 del %HOMEDRIVE%\credprovs.reg* >nul 2>&1
 
 echo.
