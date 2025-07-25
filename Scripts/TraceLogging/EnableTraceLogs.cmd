@@ -64,5 +64,6 @@ logman import LogonUICredFrame -xml .\Config\LogonUICredFrame.xml -ets
 logman import WinBioService -xml .\Config\WinBioService.xml -ets
 logman import MFTracing -xml .\Config\MFTracing.xml -ets
 logman import KernelPnP -xml .\Config\KernelPnP.xml -ets
+logman create trace FaceIQCapture -p {4be6892c-cb5e-5dd9-d5e4-21d00f52c620} 0xFFFFFFFF 5 -o %WINDIR%\system32\LogFiles\WMI\IQCapture.etl -ets
 
 echo.
