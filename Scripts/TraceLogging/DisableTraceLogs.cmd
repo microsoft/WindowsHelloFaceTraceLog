@@ -20,6 +20,8 @@ logman stop NGCTPMFingerprintCP -ets >nul 2>&1
 logman stop LogonUICredFrame -ets >nul 2>&1
 logman stop WinBioService -ets >nul 2>&1
 logman stop MFTracing -ets >nul 2>&1
+logman stop KernelPnP -ets >nul 2>&1
+logman stop FaceIQCapture -ets >nul 2>&1
 
 del %WINDIR%\System32\LogFiles\WMI\FaceUnlock.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\FaceReco.etl* >nul 2>&1
@@ -32,6 +34,8 @@ del %WINDIR%\System32\LogFiles\WMI\NGCTPMFingerprintCP.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\LogonUICredFrame.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\WinBioService.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\MFTracing.etl* >nul 2>&1
+del %WINDIR%\System32\LogFiles\WMI\KernelPnP.etl* >nul 2>&1
+del %WINDIR%\System32\LogFiles\WMI\IQCapture.etl* >nul 2>&1
 
 reg import .\Config\DisableAllLoggers.reg
 
