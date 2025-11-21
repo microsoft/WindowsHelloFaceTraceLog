@@ -9,7 +9,6 @@ echo.
 echo Stopping loggers
 
 logman stop FaceUnlock -ets >nul 2>&1
-logman stop FaceCredProv -ets >nul 2>&1
 logman stop FaceReco -ets >nul 2>&1
 logman stop FaceTel -ets >nul 2>&1
 logman stop FaceTracker -ets >nul 2>&1

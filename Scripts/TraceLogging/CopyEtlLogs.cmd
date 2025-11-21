@@ -33,7 +33,6 @@ net stop frameserver >nul 2>&1
 
 logman stop FaceTracker -ets >nul 2>&1
 logman stop FaceUnlock -ets >nul 2>&1
-logman stop FaceCredProv -ets >nul 2>&1
 logman stop FaceReco -ets >nul 2>&1
 logman stop FaceTel -ets >nul 2>&1
 logman stop FacePerf -ets >nul 2>&1
@@ -75,7 +74,6 @@ copy "%WINDIR%\Analog\Providers\ProviderLogOutput.txt" "%OUTPUT_FOLDER%"\ >nul 2
 copy "%HOMEDRIVE%\credprovs.*" "%OUTPUT_FOLDER%"\
 
 del %WINDIR%\System32\LogFiles\WMI\FaceTracker.etl* >nul 2>&1
-del %WINDIR%\System32\LogFiles\WMI\FaceCredProv.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\FaceUnlock.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\FaceReco.etl* >nul 2>&1
 del %WINDIR%\System32\LogFiles\WMI\FaceTel.etl* >nul 2>&1
